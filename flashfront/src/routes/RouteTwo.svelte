@@ -1,13 +1,9 @@
 <script>
-    import {useNavigate} from "svelte-navigator";
-
-    const navigate = useNavigate();
+	import Navbar from "../components/Navbar.svelte";
 
 </script>
 
-<nav>
-    <button on:click="{() => navigate('/')}"> Home </button>
-</nav>
+<Navbar></Navbar>
 
 <h1>Test route 2</h1>
 

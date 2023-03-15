@@ -1,13 +1,10 @@
 <script>
-    import {useNavigate} from "svelte-navigator";
-
-    const navigate = useNavigate();
+	import Navbar from "../components/Navbar.svelte";
 
 </script>
 
-<nav>
-    <button on:click="{() => navigate('/2')}"> Page two </button>
-</nav>
+<Navbar></Navbar>
+
 <h1>Home page</h1>
 
 <style>
