@@ -20,6 +20,7 @@
     "svelte": "^3.56.0"
   },
   "dependencies": {
+    "bulma": "^0.9.4",
     "sirv-cli": "^2.0.0",
     "svelte-navigator": "^3.2.2",
     "svelte-routing": "^1.6.0"
