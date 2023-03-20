@@ -4,6 +4,9 @@
     import Navbar from '../components/Navbar.svelte';
     import axios from 'axios';
     import SuccessRegister from '../components/SuccessRegister.svelte';
+    import {useNavigate} from 'svelte-navigator';
+
+    const navigate = useNavigate();
 
     const apiAdress = "http://localhost:3000/api/auth/register";
 
@@ -40,3 +43,8 @@
   <SuccessRegister />
 {/if}
 <Register onSubmit={handleRegistration} />
+<br>
+<p>Already have an account?</p>
+<button on:click="{() => navigate('/login')}">
+  Login
+</button>
