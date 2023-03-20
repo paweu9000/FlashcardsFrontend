@@ -24,6 +24,11 @@
 
 <h2 class="email-popup">Email verified succesfully</h2>
 
+<p>You can now login</p>
+<button on:click="{() => navigate('/login')}">
+  Login
+</button>
+
 <style>
 .email-popup {
   position: fixed;
