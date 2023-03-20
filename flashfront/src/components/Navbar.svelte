@@ -17,6 +17,9 @@
       <button on:click="{() => navigate('/register')}" class="navbar-button">
 			  Register
 		  </button>
+      <button on:click="{() => navigate('/login')}" class="navbar-button">
+			  Login
+		  </button>
 	  </div>
 </nav>
 
