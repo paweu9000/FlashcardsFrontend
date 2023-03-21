@@ -19,6 +19,7 @@
             const token = response.headers.authorization.split(" ")[1];
             console.log(token);
             localStorage.setItem("token", token);
+            navigate("/");
         }
       })
       .catch((error) => {

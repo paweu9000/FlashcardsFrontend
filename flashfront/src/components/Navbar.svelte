@@ -3,6 +3,13 @@
 
   const navigate = useNavigate();
 
+  let isLoggedIn = localStorage.getItem("token");
+
+  function handleLogout() {
+    localStorage.removeItem('token');
+    isLoggedIn = localStorage.getItem("token");
+    navigate('/');
+  }
 </script>
 
 <nav>
@@ -14,12 +21,19 @@
       <button on:click="{() => navigate('/2')}" class="navbar-button">
 			  PageTwo
 		  </button>
+      {#if isLoggedIn == null}
       <button on:click="{() => navigate('/register')}" class="navbar-button">
 			  Register
 		  </button>
       <button on:click="{() => navigate('/login')}" class="navbar-button">
 			  Login
 		  </button>
+      {/if}
+      {#if isLoggedIn != null}
+      <button on:click={handleLogout} class="navbar-button">
+			  Logout
+		  </button>
+      {/if}
 	  </div>
 </nav>
 
