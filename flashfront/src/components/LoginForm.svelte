@@ -6,13 +6,13 @@
   
     const handleSubmit = (event) => {
       event.preventDefault();
-      onSubmit({ login, username, email, password });
+      onSubmit({ loginOrEmail, password });
     };
 </script>
   
 <form on:submit={handleSubmit}>
     <label>
-        Login:
+        Login or Email:
         <input type="text" bind:value={loginOrEmail} required>
     </label>
   

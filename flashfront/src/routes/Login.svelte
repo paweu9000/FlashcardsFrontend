@@ -6,10 +6,30 @@
 
     const navigate = useNavigate();
 
+    const apiAdress = "http://localhost:3000/api/authenticate";
+
+    const handleLogin = (formData) => {
+      axios.post(apiAdress, {
+          emailOrLogin: formData.loginOrEmail,
+          password: formData.password
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.status == 200) {
+            const token = response.headers.authorization.split(" ")[1];
+            console.log(token);
+            localStorage.setItem("token", token);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    };
+
 </script>
 
 <Navbar/>
-<LoginForm/>
+<LoginForm onSubmit={handleLogin}/>
 <p>Don't have an account?</p>
 <button on:click="{() => navigate('/register')}">
     Register

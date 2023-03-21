@@ -1,8 +1,9 @@
 <script>
     import axios from 'axios';
     import { onMount } from 'svelte';
-    import { useParams } from 'svelte-navigator';
+    import { useParams, useNavigate } from 'svelte-navigator';
 
+    const navigate = useNavigate();
     const token  = useParams();
     const toVerify = $token.token;
     console.log(toVerify);
