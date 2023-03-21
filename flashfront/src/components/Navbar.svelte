@@ -30,6 +30,9 @@
 		  </button>
       {/if}
       {#if isLoggedIn != null}
+      <button on:click="{() => navigate('/addcards')}" class="navbar-button">
+			  Add Cards
+		  </button>
       <button on:click={handleLogout} class="navbar-button">
 			  Logout
 		  </button>

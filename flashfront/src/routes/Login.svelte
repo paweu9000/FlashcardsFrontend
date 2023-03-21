@@ -31,7 +31,35 @@
 
 <Navbar/>
 <LoginForm onSubmit={handleLogin}/>
-<p>Don't have an account?</p>
-<button on:click="{() => navigate('/register')}">
-    Register
-</button>
+<div class="container">
+  <p>Don't have an account?</p>
+  <button on:click="{() => navigate('/register')}">
+      Register
+  </button>
+</div>
+
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  button {
+    background-color: #222;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #444;
+  }
+
+</style>
