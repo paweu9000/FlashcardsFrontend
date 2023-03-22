@@ -1,9 +1,21 @@
 <script>
   import {useNavigate} from "svelte-navigator";
+  import {onMount} from 'svelte';
 
   const navigate = useNavigate();
 
   let isLoggedIn = localStorage.getItem("token");
+
+  onMount(() => {
+    if(isLoggedIn !== null) {
+      const decodedToken = JSON.parse(atob(isLoggedIn.split('.')[1]));
+      const expirationTime = decodedToken.exp * 1000;
+      const currentTime = Date.now();
+      if(currentTime > expirationTime) {
+        handleLogout();
+      }
+    }
+  })
 
   function handleLogout() {
     localStorage.removeItem('token');

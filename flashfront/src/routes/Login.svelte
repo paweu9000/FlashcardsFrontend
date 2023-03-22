@@ -17,7 +17,6 @@
         console.log(response);
         if (response.status == 200) {
             const token = response.headers.authorization.split(" ")[1];
-            console.log(token);
             localStorage.setItem("token", token);
             navigate("/");
         }
