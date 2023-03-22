@@ -1,7 +1,18 @@
 <script>
+    import { onMount } from "svelte";
     import Navbar from "../components/Navbar.svelte";
+    import {useNavigate} from "svelte-navigator";
+
+    const navigate = useNavigate();
 
     let flashcards = [{ side: "", value: "" }];
+
+    onMount(() => {
+        let isLoggedIn = localStorage.getItem("token");
+        if(isLoggedIn == null) {
+            navigate("/");
+        }
+    })
 
     function addFlashcard() {
         flashcards = [...flashcards, { side: "", value: "" }];
@@ -13,12 +24,19 @@
         });
     }
 
+    function deleteFlashcard(index) {
+        if(flashcards.length > 1) {
+            flashcards = flashcards.filter((_, i) => i !== index);
+        }
+    }
+
 </script>
 
 <Navbar/>
 <div class="flashcards-container">
     {#each flashcards as flashcard, i}
         <div class="flashcard">
+            <button class="close-button" on:click={() => deleteFlashcard(i)}>X</button>
             <label>Term:
                 <input bind:value={flashcard.side} placeholder="{flashcard.side}">
             </label>
@@ -46,7 +64,7 @@
         margin: 10px;
         padding: 20px;
         width: 600px;
-        height: 150px;
+        height: 170px;
         border-radius: 10px;
         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
         background-color: #fff;
@@ -72,6 +90,17 @@
         outline: none;
         box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
         border-color: blue;
+    }
+    
+    .close-button {
+        width: 20px;
+        height: 20px;
+        border: none;
+        background-color: transparent;
+        font-size: 16px;
+        font-weight: bold;
+        color: black;
+        cursor: pointer;
     }
 
     .button-29 {
