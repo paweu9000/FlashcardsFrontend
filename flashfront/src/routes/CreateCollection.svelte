@@ -31,7 +31,6 @@
             }
         })
         .then(response => {
-            console.log(response.data);
             const ids = response.data.split(" ");
             flashcards.forEach(flashcard => {
                 flashcard.collectionId = ids[0];
@@ -43,8 +42,7 @@
                 }
             })
             .then(response => {
-                console.log(response.data);
-                
+                navigate("/");
             })
             .catch(error => {
                 console.error(error);
