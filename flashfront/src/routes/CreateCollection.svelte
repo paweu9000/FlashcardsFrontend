@@ -2,25 +2,56 @@
     import { onMount } from "svelte";
     import Navbar from "../components/Navbar.svelte";
     import {useNavigate} from "svelte-navigator";
+    import axios from "axios";
 
     const navigate = useNavigate();
+    const collectionApi = "http://localhost:3000/api/collection";
+    const cardApi = "http://localhost:3000/api/cards";
 
-    let flashcards = [{ side: "", value: "" }];
+    let flashcards = [{ side: "", value: "", collectionId: "", creatorId: "" }];
+
+    let title = "";
 
     onMount(() => {
-        let isLoggedIn = localStorage.getItem("token");
-        if(isLoggedIn == null) {
+        if(localStorage.getItem("token") == null) {
             navigate("/");
         }
     })
 
     function addFlashcard() {
-        flashcards = [...flashcards, { side: "", value: "" }];
+        flashcards = [...flashcards, { side: "", value: "", collectionId: "", creatorId: "" }];
     }
 
     function saveFlashcards() {
-        flashcards.forEach(element => {
-            console.log(element);
+        axios.post(collectionApi, {
+                'title': title,
+        }, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`
+            }
+        })
+        .then(response => {
+            console.log(response.data);
+            const ids = response.data.split(" ");
+            flashcards.forEach(flashcard => {
+                flashcard.collectionId = ids[0];
+                flashcard.creatorId = ids[1];
+            })
+            axios.post(cardApi + `/${ids[0]}/all`, flashcards, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`
+                }
+            })
+            .then(response => {
+                console.log(response.data);
+                
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        })
+        .catch(error => {
+            console.error(error);
         });
     }
 
@@ -34,14 +65,20 @@
 
 <Navbar/>
 <div class="flashcards-container">
+    <div style="margin-top: 8px; margin-bottom: 8px">
+        <label>
+            Collection Title:
+            <input minlength="1" bind:value={title} placeholder="{title}">
+        </label>
+    </div>
     {#each flashcards as flashcard, i}
         <div class="flashcard">
             <button class="close-button" on:click={() => deleteFlashcard(i)}>X</button>
             <label>Term:
-                <input bind:value={flashcard.side} placeholder="{flashcard.side}">
+                <input minlength="1" bind:value={flashcard.side} placeholder="{flashcard.side}">
             </label>
             <label>Definition:
-                <input bind:value={flashcard.value} placeholder="{flashcard.value}">
+                <input minlength="1" bind:value={flashcard.value} placeholder="{flashcard.value}">
             </label>
         </div>
     {/each}
