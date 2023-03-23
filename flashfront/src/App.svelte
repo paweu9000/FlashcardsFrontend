@@ -6,6 +6,7 @@
 	import EmailVerification from './routes/EmailVerification.svelte';
 	import Login from './routes/Login.svelte';
     import CreateCollection from './routes/CreateCollection.svelte';
+	import UserPage from './routes/UserPage.svelte';
 </script>
 
 <main>
@@ -16,6 +17,7 @@
 		<Route path="/login" component={Login}/>
 		<Route path="/addcards" component={CreateCollection}/>
 		<Route path="/verify/:token" component={EmailVerification}/>
+		<Route path="/user" component={UserPage}/>
 	</Router>
 </main>
 
