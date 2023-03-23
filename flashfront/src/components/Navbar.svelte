@@ -45,6 +45,9 @@
       <button on:click="{() => navigate('/addcards')}" class="navbar-button">
 			  Add Cards
 		  </button>
+      <button on:click="{() => navigate('/user')}" class="navbar-button">
+			  User Info
+		  </button>
       <button on:click={handleLogout} class="navbar-button">
 			  Logout
 		  </button>
