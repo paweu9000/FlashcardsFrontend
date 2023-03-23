@@ -42,7 +42,7 @@
                 }
             })
             .then(response => {
-                navigate("/");
+                navigate(`/flashcards/${ids[0]}`);
             })
             .catch(error => {
                 console.error(error);

@@ -36,7 +36,7 @@
         <div>
             {#each collections as collection}
                 <div>
-                    <button>{collection.title}</button>
+                    <button on:click={navigate(`/flashcards/${collection.id}`)}>{collection.title}</button>
                 </div>
             {/each}
     </div>
