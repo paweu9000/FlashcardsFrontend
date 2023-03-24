@@ -24,8 +24,6 @@
     onMount(() => {
         axios.get(apiAdress).then(response => {
             collection = response.data;
-            console.log(collection);
-            console.log(collection.title);
         })
         .catch(error => {
             console.error(error);
@@ -67,6 +65,19 @@
             --index;
         }
     }
+
+    function deleteCard(confirmation) {
+      if(collection.cards.length > 1 && confirmation) {
+        collection.cards = collection.cards.filter((_, i) => i !== index);
+        if(index != 0) {
+          index -= 1;
+        }
+      }
+    }
+
+    function shouldDeleteCard() {
+      deleteCard(confirm("Are you sure you want to delete this card?"));
+    }
 </script>
 
 <Navbar/>
@@ -100,6 +111,12 @@
         <button on:click={getPreviousCard}>Previous card</button>
         <button on:click={getNextCard}>Next card</button>
     </div>
+    <div class="container">
+      {#if collection.cards != null && collection.cards.length > 1}
+      <button on:click={shouldDeleteCard}>Delete card</button>
+      {/if}
+      <button>Add new card</button>
+  </div>
 </div>
 
 <style>
