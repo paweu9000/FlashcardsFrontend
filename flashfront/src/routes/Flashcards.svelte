@@ -8,6 +8,7 @@
     const id  = useParams();
     const checkId = $id.id;
     const apiAdress = "http://localhost:3000/api/collection/" + checkId;
+    const cardApiAdress = "http://localhost:3000/api/cards/";
     let collection = [];
     let index = 0;
 
@@ -72,6 +73,15 @@
         if(index != 0) {
           index -= 1;
         }
+        axios.delete(cardApiAdress + collection.cards[index].id, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`
+            }
+        }).then(response => {
+            console.log(response);
+        }).catch(error => {
+            console.log(error);
+        })
       }
     }
 
