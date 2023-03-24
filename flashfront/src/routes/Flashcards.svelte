@@ -33,7 +33,8 @@
         });
     })
 
-    function deleteCollection() {
+    function deleteCollection(confirm) {
+      if(confirm) {
         axios.delete(apiAdress, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("token")}`
@@ -44,6 +45,11 @@
         }).catch(error => {
             console.log(error);
         })
+      }
+    }
+
+    function shouldDeleteCollection() {
+      deleteCollection(confirm("Are you sure you want to delete this collection?"));
     }
 
     function getNextCard() {
@@ -67,7 +73,7 @@
 <br>
 <div class="container">
     <h2 class="h2-h2">{collection.title}</h2>
-    <button class="delete-button" on:click={deleteCollection}>Delete Collection</button>
+    <button class="delete-button" on:click={shouldDeleteCollection}>Delete Collection</button>
 </div>
 <div class="card-container">
     {#if collection.cards != null}
