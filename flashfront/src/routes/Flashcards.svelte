@@ -24,9 +24,8 @@
 
     onMount(() => {
         axios.get(apiAdress).then(response => {
-            console.log(response.data);
             collection = response.data;
-            if(collection.owners === JSON.parse(localStorage.getItem('user')).id) isAuthor = true;
+            if(localStorage.getItem('user') != null && collection.owners === JSON.parse(localStorage.getItem('user')).id) isAuthor = true;
         })
         .catch(error => {
             console.error(error);
