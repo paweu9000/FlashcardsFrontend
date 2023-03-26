@@ -2,6 +2,7 @@
     import axios from 'axios';
     import { onMount } from 'svelte';
     import { useParams, useNavigate } from 'svelte-navigator';
+    import Navbar from '../components/Navbar.svelte';
 
     const navigate = useNavigate();
     const token  = useParams();
@@ -22,6 +23,9 @@
       })
     })
 </script>
+
+<Navbar/>
+<br>
 
 <h2 class="email-popup">Email verified succesfully</h2>
 

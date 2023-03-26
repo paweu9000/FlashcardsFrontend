@@ -24,7 +24,6 @@
                 'Authorization': `Bearer ${token}`
             }
             }).then(response => {
-              console.log(response.data);
               localStorage.setItem("user", JSON.stringify(response.data));
             }).catch(error => {
               console.log(error);
