@@ -3,6 +3,7 @@
     import { onMount } from 'svelte';
     import { useParams, useNavigate } from 'svelte-navigator';
     import Navbar from '../components/Navbar.svelte';
+    import AddCard from '../components/AddCard.svelte';
 
     const navigate = useNavigate();
     const id  = useParams();
@@ -13,6 +14,7 @@
     let index = 0;
     let isFlipped = false;
     let isAuthor = false;
+    let adding = false;
 
     function handleMouseOver() {
         isFlipped = true;
@@ -20,6 +22,37 @@
 
     function handleMouseOut() {
         isFlipped = false;
+    }
+
+    function cancelAdding(event) {
+      adding = event.detail;
+    }
+
+    function wantToAdd() {
+      adding = !adding;
+    }
+
+    function addCard(event) {
+      const card = event.detail;
+      const userId = JSON.parse(localStorage.getItem('user')).id;
+      axios.post(cardApiAdress + checkId, {
+              side: card.side,
+              value: card.value,
+              collectionId: checkId,
+              creatorId:  userId
+            }, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`
+                }
+            })
+            .then(response => {
+                const dao = response.data;
+                collection.cards = [...collection.cards, dao];
+                wantToAdd();
+            })
+            .catch(error => {
+                console.error(error);
+            });
     }
 
     onMount(() => {
@@ -53,6 +86,7 @@
     }
 
     function getNextCard() {
+      console.log(collection);
         if(index + 1 == collection.cards.length) {
             index = 0;
         } else {
@@ -129,10 +163,15 @@
       {#if collection.cards != null && collection.cards.length > 1}
       <button on:click={shouldDeleteCard}>Delete card</button>
       {/if}
-      <button>Add new card</button>
+      <button on:click={wantToAdd}>Add new card</button>
     </div>
     {/if}
+    <br>
+    {#if adding}
+      <AddCard on:cancel={cancelAdding} on:add={addCard} />
+    {/if}
 </div>
+
 
 <style>
     .container {
