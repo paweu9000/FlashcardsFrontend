@@ -11,8 +11,8 @@
     const cardApiAdress = "http://localhost:3000/api/cards/";
     let collection = [];
     let index = 0;
-
     let isFlipped = false;
+    let isAuthor = false;
 
     function handleMouseOver() {
         isFlipped = true;
@@ -24,7 +24,9 @@
 
     onMount(() => {
         axios.get(apiAdress).then(response => {
+            console.log(response.data);
             collection = response.data;
+            if(collection.owners === JSON.parse(localStorage.getItem('user')).id) isAuthor = true;
         })
         .catch(error => {
             console.error(error);
@@ -94,7 +96,9 @@
 <br>
 <div class="container">
     <h2 class="h2-h2">{collection.title}</h2>
+    {#if isAuthor}
     <button class="delete-button" on:click={shouldDeleteCollection}>Delete Collection</button>
+    {/if}
 </div>
 <div class="card-container">
     {#if collection.cards != null}
@@ -121,12 +125,14 @@
         <button on:click={getPreviousCard}>Previous card</button>
         <button on:click={getNextCard}>Next card</button>
     </div>
+    {#if isAuthor}
     <div class="container">
       {#if collection.cards != null && collection.cards.length > 1}
       <button on:click={shouldDeleteCard}>Delete card</button>
       {/if}
       <button>Add new card</button>
-  </div>
+    </div>
+    {/if}
 </div>
 
 <style>

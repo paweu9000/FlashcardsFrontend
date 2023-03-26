@@ -19,6 +19,7 @@
 
   function handleLogout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     isLoggedIn = localStorage.getItem("token");
     navigate('/');
   }
