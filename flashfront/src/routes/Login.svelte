@@ -7,6 +7,7 @@
     const navigate = useNavigate();
 
     const apiAdress = "http://localhost:3000/api/authenticate";
+    const userApiAdress = "http://localhost:3000/api/user";
 
     const handleLogin = (formData) => {
       axios.post(apiAdress, {
@@ -18,6 +19,16 @@
         if (response.status == 200) {
             const token = response.headers.authorization.split(" ")[1];
             localStorage.setItem("token", token);
+            axios.get(userApiAdress, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+            }).then(response => {
+              console.log(response.data);
+              localStorage.setItem("user", JSON.stringify(response.data));
+            }).catch(error => {
+              console.log(error);
+            })
             navigate("/");
         }
       })
