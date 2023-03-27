@@ -39,36 +39,20 @@
 </script>
 
 <Navbar/>
-<LoginForm onSubmit={handleLogin}/>
-<div class="container">
-  <p>Don't have an account?</p>
-  <button on:click="{() => navigate('/register')}">
-      Register
-  </button>
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <h2 class="ui teal image header">
+      <div class="content">
+        Log-in to your account
+      </div>
+    </h2>
+    <LoginForm onSubmit={handleLogin}/>
+    <div class="ui message">
+      Don't have an account?
+      <button class="mini ui button" on:click="{() => navigate('/register')}">
+        Register
+      </button>
+    </div>
+  </div>
 </div>
 
-<style>
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-  }
-
-  button {
-    background-color: #222;
-    color: #fff;
-    font-size: 16px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  button:hover {
-    background-color: #444;
-  }
-
-</style>
