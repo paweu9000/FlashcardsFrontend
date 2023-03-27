@@ -8,6 +8,7 @@
     import CreateCollection from './routes/CreateCollection.svelte';
 	import UserPage from './routes/UserPage.svelte';
     import Flashcards from './routes/Flashcards.svelte';
+	import 'semantic-ui-react';
 </script>
 
 <main>

@@ -25,82 +25,62 @@
   }
 </script>
 
-<nav>
-    <div class="navbar-brand">Flashcards</div>
-	  <div class="navbar-menu">
-		  <button on:click="{() => navigate('/')}" class="navbar-button">
-			  Home
-		  </button>
-      <button on:click="{() => navigate('/2')}" class="navbar-button">
-			  PageTwo
-		  </button>
-      {#if isLoggedIn == null}
-      <button on:click="{() => navigate('/register')}" class="navbar-button">
-			  Register
-		  </button>
-      <button on:click="{() => navigate('/login')}" class="navbar-button">
-			  Login
-		  </button>
-      {/if}
-      {#if isLoggedIn != null}
-      <button on:click="{() => navigate('/addcards')}" class="navbar-button">
-			  Add Cards
-		  </button>
-      <button on:click="{() => navigate('/user')}" class="navbar-button">
-			  User Info
-		  </button>
-      <button on:click={handleLogout} class="navbar-button">
-			  Logout
-		  </button>
-      {/if}
-	  </div>
+<nav class="ui navbar menu">
+  <div class="navbar-brand">
+    <p class="navbar-item">
+      <img src="/logo.png" width="162" height="46" alt="">
+    </p>
+  </div>
+  <button style="margin-left: 20px" on:click="{() => navigate('/')}" class="ui green button">
+    Home
+  </button>
+  {#if isLoggedIn != null}
+      <button on:click="{() => navigate('/addcards')}" class="ui green button">
+        Add Cards
+      </button>
+
+      <button on:click="{() => navigate('/user')}" class="ui green button">
+        User Info
+      </button>
+  {/if}
+  <div class="right menu">
+    {#if isLoggedIn == null}
+          <button on:click="{() => navigate('/register')}" class="ui teal button">
+            <strong>Sign up</strong>
+          </button>
+          <button on:click="{() => navigate('/login')}" class="ui blue button">
+            Log in
+          </button>
+    {/if}
+    {#if isLoggedIn != null}
+          <button on:click={handleLogout} class="ui red button">
+            <strong>Logout</strong>
+          </button>
+    {/if}
+  </div>
 </nav>
 
 <style>
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .navbar {
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
     padding: 1rem;
-    background-color: #f0f0f0;
   }
 
-  .navbar-brand {
-    font-size: 1.5rem;
+  .navbar .menu {
+    margin: 0;
+  }
+
+  .navbar .item {
     font-weight: bold;
-  }
-
-  .navbar-menu {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .navbar-item {
-    margin-right: 1rem;
-    text-decoration: none;
     color: #333;
   }
 
-  .navbar-item:hover {
-    color: #666;
+  .navbar .item.active {
+    background-color: #fff;
+    color: #2185d0;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    border-radius: 0.25rem 0.25rem 0 0;
   }
-  .navbar-button {
-  background-color: transparent;
-  border: none;
-  color: #333;
-  font-size: 16px;
-  font-weight: bold;
-  margin-right: 10px;
-  padding: 5px 10px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.navbar-button:hover {
-  background-color: #333;
-  color: #fff;
-  cursor: pointer;
-}
 </style>

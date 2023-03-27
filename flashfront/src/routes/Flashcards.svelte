@@ -214,7 +214,7 @@
 
   .flashcard {
     position: relative;
-    width: 200px;
+    width: 400px;
     height: 200px;
     border: 1px solid black;
     border-radius: 10px;
