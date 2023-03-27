@@ -57,6 +57,7 @@
 </nav>
 
 <style>
+  @import "../../node_modules/semantic-ui-css/semantic.min.css";
   nav {
     display: flex;
     justify-content: space-between;
