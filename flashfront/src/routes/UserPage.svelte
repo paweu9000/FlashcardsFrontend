@@ -31,43 +31,18 @@
 
 <Navbar/>
 <br>
-<div class="container">
+<div class="ui two column centered grid">
     <h2>My Collections :</h2>
-        <div>
+    <br>
+        <div class="four column centered row">
             {#each collections as collection}
-                <div>
-                    <button on:click={navigate(`/flashcards/${collection.id}`)}>{collection.title}</button>
+                <div class="column">
+                    <button class="massive ui button" on:click={navigate(`/flashcards/${collection.id}`)}>{collection.title}</button>
                 </div>
             {/each}
     </div>
 </div>
 
 <style>
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    h2 {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-    
-    button {
-      background-color: #f5f5f5;
-      border: none;
-      border-radius: 5px;
-      color: #333;
-      font-size: 16px;
-      padding: 10px 20px;
-      margin-bottom: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    
-    button:hover {
-      background-color: #ddd;
-    }
-  </style>
+   
+</style>
