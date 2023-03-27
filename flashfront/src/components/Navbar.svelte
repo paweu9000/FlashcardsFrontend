@@ -31,15 +31,15 @@
       <img src="/logo.png" width="162" height="46" alt="">
     </p>
   </div>
-  <button style="margin-left: 20px" on:click="{() => navigate('/')}" class="ui green button">
+  <button style="margin-left: 20px" on:click="{() => navigate('/')}" class="medium ui button">
     Home
   </button>
   {#if isLoggedIn != null}
-      <button on:click="{() => navigate('/addcards')}" class="ui green button">
+      <button on:click="{() => navigate('/addcards')}" class="medium ui button">
         Add Cards
       </button>
 
-      <button on:click="{() => navigate('/user')}" class="ui green button">
+      <button on:click="{() => navigate('/user')}" class="medium ui button">
         User Info
       </button>
   {/if}
@@ -54,7 +54,7 @@
     {/if}
     {#if isLoggedIn != null}
           <button on:click={handleLogout} class="ui red button">
-            <strong>Logout</strong>
+            <i class="power off icon"></i>
           </button>
     {/if}
   </div>
