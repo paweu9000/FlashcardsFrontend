@@ -27,30 +27,34 @@
 <Navbar/>
 <br>
 
-<h2 class="email-popup">Email verified succesfully</h2>
-
-<p>You can now login</p>
-<button on:click="{() => navigate('/login')}">
-  Login
-</button>
+<div class="container">
+  <p>Email verified succesfully!</p>
+  <button on:click="{() => navigate('/login')}">
+    Login
+  </button>
+</div>
 
 <style>
-.email-popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #8BC34A;
-  color: #fff;
-  padding: 1rem;
-  border-radius: 5px;
-  z-index: 1000;
-}
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
 
-.email-popup p {
-  margin: 0;
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-align: center;
-}
+  button {
+    background-color: #222;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #444;
+  }
 </style>

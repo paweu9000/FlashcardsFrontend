@@ -22,7 +22,7 @@
     </div>
     <div class="field">
       <div class="ui left icon input">
-        <i class="hand point up icon"></i>
+        <i class="child icon"></i>
         <input min=2 max=30 type="text" bind:value={username} placeholder="Username">
       </div>
     </div>

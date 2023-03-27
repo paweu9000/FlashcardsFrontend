@@ -130,7 +130,7 @@
 <div class="container">
     <h2 class="h2-h2">{collection.title}</h2>
     {#if isAuthor}
-    <button class="delete-button" on:click={shouldDeleteCollection}>Delete Collection</button>
+    <button class="negative ui button" on:click={shouldDeleteCollection}>Delete Collection</button>
     {/if}
 </div>
 <div class="card-container">
@@ -155,15 +155,28 @@
         <h3>{index+1} / {collection.cards.length}</h3>
     {/if}
     <div class="container">
-        <button on:click={getPreviousCard}>Previous card</button>
-        <button on:click={getNextCard}>Next card</button>
+        <button class="ui labeled icon button" on:click={getPreviousCard}>
+          <i class="left arrow icon"></i>
+          Previous card
+        </button>
+        <button class="ui right labeled icon button" on:click={getNextCard}>
+          <i class="right arrow icon"></i>
+          Next card
+        </button>
     </div>
+    <br>
     {#if isAuthor}
     <div class="container">
       {#if collection.cards != null && collection.cards.length > 1}
-      <button on:click={shouldDeleteCard}>Delete card</button>
+      <button class="ui labeled icon button" on:click={shouldDeleteCard}>
+        <i class="trash alternate icon"></i>
+        Delete card
+      </button>
       {/if}
-      <button on:click={wantToAdd}>Add new card</button>
+      <button class="ui right labeled icon button" on:click={wantToAdd}>
+        <i class="plus icon"></i>
+        Add new card
+      </button>
     </div>
     {/if}
     <br>
