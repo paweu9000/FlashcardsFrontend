@@ -39,10 +39,4 @@
       margin-top: 50px;
   }
 
-  input {
-      padding: 8px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-      margin-left: 10px;
-  }
 </style>
