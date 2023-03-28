@@ -31,18 +31,24 @@
 
 <Navbar/>
 <br>
-<div class="ui two column centered grid">
-    <h2>My Collections :</h2>
-    <br>
-        <div class="four column centered row">
+<div class="container">
+    <div class="ui divided items">
+        <h2>My Collections :</h2>
             {#each collections as collection}
-                <div class="column">
-                    <button class="massive ui button" on:click={navigate(`/flashcards/${collection.id}`)}>{collection.title}</button>
+                <div class="item">
+                    <div class="middle aligned content">
+                        <button class="massive ui button" on:click={navigate(`/flashcards/${collection.id}`)}>{collection.title}</button>
+                    </div>
                 </div>
             {/each}
     </div>
 </div>
-
 <style>
-   
+   .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
 </style>
