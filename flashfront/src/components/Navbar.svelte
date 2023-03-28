@@ -18,10 +18,12 @@
   })
 
   function handleLogout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    isLoggedIn = localStorage.getItem("token");
-    navigate('/');
+    if(confirm("Are you sure you want to log out?")) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      isLoggedIn = localStorage.getItem("token");
+      navigate('/');
+    }
   }
 </script>
 
@@ -55,6 +57,7 @@
     {#if isLoggedIn != null}
           <button on:click={handleLogout} class="ui red button">
             <i class="power off icon"></i>
+            Logout
           </button>
     {/if}
   </div>
