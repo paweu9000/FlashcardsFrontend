@@ -15,7 +15,7 @@
         <div class="field">
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <input type="text" bind:value={loginOrEmail} placeholder="E-mail address">
+            <input type="text" bind:value={loginOrEmail} placeholder="E-mail or Login">
           </div>
         </div>
         <div class="field">
