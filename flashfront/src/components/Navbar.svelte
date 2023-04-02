@@ -1,6 +1,7 @@
 <script>
   import {useNavigate} from "svelte-navigator";
   import {onMount} from 'svelte';
+  import SearchBar from "./SearchBar.svelte";
 
   const navigate = useNavigate();
 
@@ -45,6 +46,7 @@
         User Info
       </button>
   {/if}
+  <SearchBar />
   <div class="right menu">
     {#if isLoggedIn == null}
           <button on:click="{() => navigate('/register')}" class="ui teal button">
