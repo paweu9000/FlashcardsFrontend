@@ -32,6 +32,12 @@
 </script>
 
 <div class="ui search">
+    <i class="copy icon"></i>
+    <div class="ui toggle checkbox">
+        <input type="checkbox" name="public">
+        <label></label>
+    </div>
+    <i class="user icon"></i>
     <div class="ui icon input">
       <input class="prompt" id="input" type="text" placeholder="Search" bind:value={input} on:input={search}>
       <i class="search icon"></i>
