@@ -13,8 +13,11 @@
       const expirationTime = decodedToken.exp * 1000;
       const currentTime = Date.now();
       if(currentTime > expirationTime) {
-        handleLogout();
-      }
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        isLoggedIn = localStorage.getItem("token");
+        navigate('/');
+        }
     }
   })
 
@@ -45,8 +48,9 @@
       <button on:click="{() => navigate('/user')}" class="medium ui button">
         User Info
       </button>
+
+      <SearchBar />
   {/if}
-  <SearchBar />
   <div class="right menu">
     {#if isLoggedIn == null}
           <button on:click="{() => navigate('/register')}" class="ui teal button">
