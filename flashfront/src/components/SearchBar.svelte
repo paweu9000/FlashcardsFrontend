@@ -53,8 +53,8 @@
                 minCharacters: 0,
                 onSelect: function(result, response) {
                     console.log(result.id);
-                    // navigate(`/flashcards/${result.id}`, {replace: true, reload: true});
-                    // location.reload();
+                    navigate(`/profile/${result.id}`, {replace: true, reload: true});
+                    location.reload();
                 }
             })
             }).catch(error => {
