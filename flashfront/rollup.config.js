@@ -56,7 +56,7 @@ export default {
 		resolve({
 			browser: true,
 			dedupe: ['svelte'],
-			exportConditions: ['svelte']
+			exportConditions: ['svelte'],
 		}),
 		commonjs(),
 
