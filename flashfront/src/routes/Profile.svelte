@@ -1,14 +1,14 @@
 <script>
     import Navbar from "../components/Navbar.svelte";
-    import { useParams } from "svelte-navigator";
+    import { useParams, useNavigate } from "svelte-navigator";
     import { onMount } from "svelte";
     import axios from "axios";
     import jdenticon from 'jdenticon';
 
     const params = useParams();
+    const navigate = useNavigate();
     const id = $params.id;
     const userApi = "http://localhost:3000/api/user/";
-
     let profile = {
         username: "",
         collections: []
@@ -27,6 +27,9 @@
             jdenticon.drawIcon(canvas.getContext('2d'), profile.username);
         }).catch(error => {
             console.log(error);
+            if (error.response.status == 500 || error.response.status == 404) {
+                navigate("/");
+            }
         })
     })
 </script>
@@ -44,23 +47,12 @@
         <div class="extra content">
             <div class="ui bulleted link list">
                 {#each profile.collections as collection}
-                    <p class="item">{collection}</p>
+                    <p class="item">{collection.title}</p>
                 {/each}
             </div>
         </div>
     </div>
 </div>
-    
-    <!-- <h1></h1>
-    <div>
-        <p>Collections</p>
-        <div class="ui bulleted link list">
-            {#each profile.collections as collection}
-                <p class="item">{collection}</p>
-            {/each}
-        </div>
-    </div>
-</div> -->
 
 <style>
     .container {
