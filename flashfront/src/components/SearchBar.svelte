@@ -21,15 +21,19 @@
             .then(response => {
                 content = response.data;
                 console.log(content);
+            }).catch(error => {
+                console.log(error);
+            }).finally(() => {
                 jQuery('.ui.search').search({
-                source: content,
+                source: content.map(collection => ({title: collection.title})),
+                minCharacters: 0,
+                maxResults: 20,
+                searchFields: ['title'],
                 onSelect: function(result, response) {
                     navigate(`/flashcards/${result.id}`, {replace: true, reload: true});
                     location.reload();
                 }
             })
-            }).catch(error => {
-                console.log(error);
             })
         } else {
             axios.get(userApi + input, {
@@ -38,27 +42,20 @@
             .then(response => {
                 content = response.data;
                 console.log(content);
+            }).catch(error => {
+                console.log(error);
+            }).finally(() => {
                 jQuery('.ui.search').search({
-                    source: content.map(item => {
-                    return {
-                        title: item.username,
-                        id: item.id
-                    }
-                }),
-                searchFields: ['title'],
-                fields: {
-                    title: 'title',
-                    id: 'id'
-                },
-                minCharacters: 0,
+                    source: content.map(user => ({title: user.username})),
+                    minCharacters: 0,
+                    maxResults: 20,
+                    searchFields: ['title'],
                 onSelect: function(result, response) {
                     console.log(result.id);
                     navigate(`/profile/${result.id}`, {replace: true, reload: true});
                     location.reload();
                 }
             })
-            }).catch(error => {
-                console.log(error);
             })
         }
     }

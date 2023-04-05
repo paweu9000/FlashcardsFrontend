@@ -44,7 +44,7 @@
         <div class="extra content">
             <div class="ui bulleted link list">
                 {#each profile.collections as collection}
-                    <p class="item">{collection}</p>
+                    <p class="item">{collection.title}</p>
                 {/each}
             </div>
         </div>
