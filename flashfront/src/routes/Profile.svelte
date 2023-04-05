@@ -47,7 +47,7 @@
         <div class="extra content">
             <div class="ui bulleted link list">
                 {#each profile.collections as collection}
-                    <p class="item">{collection.title}</p>
+                    <p class="item" on:click={navigate(`/flashcards/${collection.id}`)}>{collection.title}</p>
                 {/each}
             </div>
         </div>
@@ -61,5 +61,12 @@
       align-items: center;
       justify-content: center;
       margin-top: 20px;
+    }
+    .item {
+        text-decoration: underline;
+    }
+    .item:hover {
+        cursor: pointer;
+        text-decoration: none;
     }
 </style>
