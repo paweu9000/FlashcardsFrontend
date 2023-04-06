@@ -1,11 +1,24 @@
 <script>
 	import Navbar from "../components/Navbar.svelte";
+	import Error from "../components/Error.svelte";
+    import { onDestroy, onMount } from "svelte";
 
+	let errors = [];
+	onMount(() => {
+		errors = localStorage.getItem("error");
+	})
+	onDestroy(() => {
+		localStorage.removeItem("error");
+	})
+	
 </script>
 
 <Navbar></Navbar>
 
 <center>
+	{#if errors != null}
+		<Error errorValue={errors}/>
+	{/if}
 	<h1>Home page</h1>
 </center>
 
