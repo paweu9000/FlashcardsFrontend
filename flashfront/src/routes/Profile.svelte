@@ -28,9 +28,10 @@
         }).catch(error => {
             console.log(error);
             if (error.response.status == 500 ) {
+                localStorage.setItem("error", ['Unexpected error happened']);
                 navigate("/");
             } else if (error.response.status == 404) {
-                localStorage.setItem("error", ['User does not exist!'])
+                localStorage.setItem("error", ['User does not exist!']);
                 navigate("/");
             }
         })
