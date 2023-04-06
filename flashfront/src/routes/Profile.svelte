@@ -27,7 +27,10 @@
             jdenticon.drawIcon(canvas.getContext('2d'), profile.username);
         }).catch(error => {
             console.log(error);
-            if (error.response.status == 500 || error.response.status == 404) {
+            if (error.response.status == 500 ) {
+                navigate("/");
+            } else if (error.response.status == 404) {
+                localStorage.setItem("error", ['User does not exist!'])
                 navigate("/");
             }
         })
