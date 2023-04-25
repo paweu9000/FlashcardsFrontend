@@ -34,7 +34,7 @@
 
     async function handlePoints(userAnswer, questionAnswer, i) {
         if (index + 1 >= test.questions.length) {
-            console.log("END");
+            handleEnd();
         } else if (userAnswer == questionAnswer && !wait) {
             wait = !wait;
             points++;
@@ -55,19 +55,29 @@
         }
     }
 
+    function handleEnd() {
+        const element = document.getElementById("testbox");
+        const pointElement = document.getElementById("pointresult");
+        element.style.display = "none";
+        pointElement.style.display = "flex";
+    }
+
 </script>
 
 <Navbar/>
 
 <br>
 {#if test != null}
-<div class="container">
+<div class="container" id="testbox">
     <h2>{test.questions[index].question}</h2>
     <div class="test">
         {#each test.questions[index].answers as answer, i}
             <button class="answer" id={i} on:click={handlePoints(answer, test.questions[index].answer, i)}>{answer}</button>
         {/each}
     </div>
+</div>
+<div style="display: none;" class="container" id="pointresult">
+    <h2>You got {points}/{test.questions.length} points!</h2>
 </div>
 {/if}
 
