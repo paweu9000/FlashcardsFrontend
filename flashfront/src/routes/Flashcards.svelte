@@ -183,7 +183,7 @@
         <i class="sync alternate icon"></i>
         Randomize cards
       </button>
-      <button class="ui right labeled icon button">
+      <button class="ui right labeled icon button" on:click={() => navigate('/test/' + checkId)}>
         <i class="file alternate icon"></i>
         Take the test
       </button>
