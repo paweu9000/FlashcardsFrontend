@@ -8,6 +8,7 @@
 	import UserPage from './routes/UserPage.svelte';
     import Flashcards from './routes/Flashcards.svelte';
 	import Profile from './routes/Profile.svelte';
+    import Test from './routes/Test.svelte';
 </script>
 
 <main>
@@ -20,6 +21,7 @@
 		<Route path="/user" component={UserPage}/>
 		<Route path="/flashcards/:id" component={Flashcards}/>
 		<Route path="/profile/:id" component={Profile}/>
+		<Route path="/test/:collectionId" component={Test}/>
 	</Router>
 </main>
 
