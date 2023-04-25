@@ -66,6 +66,20 @@
         });
     })
 
+    function randomizeCards() {
+      axios.get(apiAdress + "/random", {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`
+                }}).then(response => {
+            collection = response.data;
+            if(localStorage.getItem('user') != null && collection.owners === JSON.parse(localStorage.getItem('user')).id) isAuthor = true;
+        })
+        .catch(error => {
+            console.error(error);
+            navigate("/user");
+        });
+    }
+
     function deleteCollection(confirm) {
       if(confirm) {
         axios.delete(apiAdress, {
@@ -86,7 +100,6 @@
     }
 
     function getNextCard() {
-      console.log(collection);
         if(index + 1 == collection.cards.length) {
             index = 0;
         } else {
@@ -163,6 +176,17 @@
           <i class="right arrow icon"></i>
           Next card
         </button>
+    </div>
+    <br>
+    <div class="container">
+      <button class="ui labeled icon button" on:click={randomizeCards}>
+        <i class="sync alternate icon"></i>
+        Randomize cards
+      </button>
+      <button class="ui right labeled icon button">
+        <i class="file alternate icon"></i>
+        Take the test
+      </button>
     </div>
     <br>
     {#if isAuthor}
