@@ -21,7 +21,6 @@
             }
         }).then(response => {
             test = response.data;
-            console.log(test);
         }).catch(error => {
             console.log(error);
             navigate("/");
@@ -35,7 +34,6 @@
             }
         }).then(response => {
             test = response.data;
-            console.log(test);
             resetTest();
         }).catch(error => {
             console.log(error);
@@ -109,7 +107,6 @@
             }
         }).then(response => {
             test = response.data;
-            console.log(test);
             resetTest();
         }).catch(error => {
             console.log(error);
