@@ -20,7 +20,6 @@
             })
             .then(response => {
                 content = response.data;
-                console.log(content);
             }).catch(error => {
                 console.log(error);
             }).finally(() => {
@@ -29,8 +28,8 @@
                 minCharacters: 0,
                 maxResults: 20,
                 searchFields: ['title'],
-                onSelect: function(result, response) {
-                    navigate(`/flashcards/${result.id}`, {replace: true, reload: true});
+                onSelect: function(result) {
+                    navigate(`/flashcards/${content[result.id-1].id}`, {replace: true, reload: true});
                     location.reload();
                 }
             })
@@ -41,7 +40,6 @@
             })
             .then(response => {
                 content = response.data;
-                console.log(content);
             }).catch(error => {
                 console.log(error);
             }).finally(() => {
@@ -50,9 +48,8 @@
                     minCharacters: 0,
                     maxResults: 20,
                     searchFields: ['title'],
-                onSelect: function(result, response) {
-                    console.log(result.id);
-                    navigate(`/profile/${result.id}`, {replace: true, reload: true});
+                onSelect: function(result) {
+                    navigate(`/profile/${content[result.id-1].id}`, {replace: true, reload: true});
                     location.reload();
                 }
             })
