@@ -15,6 +15,7 @@
     let isFlipped = false;
     let isAuthor = false;
     let adding = false;
+    let upvoted = false;
 
     function handleMouseOver() {
         isFlipped = true;
@@ -59,6 +60,7 @@
         axios.get(apiAdress).then(response => {
             collection = response.data;
             if(localStorage.getItem('user') != null && collection.owners === JSON.parse(localStorage.getItem('user')).id) isAuthor = true;
+            if(localStorage.getItem('user') != null && !JSON.parse(localStorage.getItem('user')).savedCollections.includes(checkId)) upvoted = true;
         })
         .catch(error => {
             console.error(error);
@@ -136,6 +138,22 @@
     function shouldDeleteCard() {
       deleteCard(confirm("Are you sure you want to delete this card?"));
     }
+
+    function upvoteCollection() {
+      axios.get(apiAdress + "/like", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      }).then(response => {
+        console.log(response.data);
+        let user = JSON.parse(localStorage.getItem('user'));
+        user.savedCollections.push(checkId);
+        localStorage.setItem('user', JSON.stringify(user));
+        upvoted = true;
+      }).catch(error => {
+        console.log(error);
+      })
+    }
 </script>
 
 <Navbar/>
@@ -144,6 +162,9 @@
     <h2 class="h2-h2">{collection.title}</h2>
     {#if isAuthor}
     <button class="negative ui button" on:click={shouldDeleteCollection}>Delete Collection</button>
+    {/if}
+    {#if !isAuthor && !upvoted}
+    <button class="ui primary button" on:click={upvoteCollection}>Save collection</button>
     {/if}
 </div>
 <div class="card-container">
