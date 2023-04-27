@@ -149,7 +149,7 @@
         let user = JSON.parse(localStorage.getItem('user'));
         user.savedCollections.push(checkId);
         localStorage.setItem('user', JSON.stringify(user));
-        upvoted = true;
+        upvoted = false;
       }).catch(error => {
         console.log(error);
       })
@@ -163,7 +163,7 @@
     {#if isAuthor}
     <button class="negative ui button" on:click={shouldDeleteCollection}>Delete Collection</button>
     {/if}
-    {#if !isAuthor && !upvoted}
+    {#if !isAuthor && upvoted}
     <button class="ui primary button" on:click={upvoteCollection}>Save collection</button>
     {/if}
 </div>
